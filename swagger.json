@@ -8,6 +8,7 @@
   "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
@@ -49,7 +50,7 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "example": "email@email.com"
                 },
                 "password": {
                   "example": "any"
@@ -113,7 +114,7 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
+                  "example": "email@email.com"
                 },
                 "password": {
                   "example": "any"
