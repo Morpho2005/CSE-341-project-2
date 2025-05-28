@@ -38,7 +38,7 @@
       },
       "post": {
         "tags": [
-          "Users"
+          "users"
         ],
         "description": "",
         "parameters": [
@@ -74,7 +74,7 @@
     "/users/{id}": {
       "get": {
         "tags": [
-          "Users"
+          "users"
         ],
         "description": "",
         "produces": [
@@ -96,7 +96,7 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "users"
         ],
         "description": "",
         "parameters": [
@@ -113,7 +113,7 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "email@email.com"
+                  "example": "any"
                 },
                 "password": {
                   "example": "any"
@@ -136,7 +136,7 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "users"
         ],
         "description": "",
         "parameters": [

@@ -11,7 +11,7 @@ content-Type: application/json
 
 {
     "username": "quack@gmail.com",
-    "password": "qwe2211"
+    "password": "qw1"
 }
 
 ### PUT user
