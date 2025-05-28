@@ -24,7 +24,7 @@
     "/users/": {
       "get": {
         "tags": [
-          "Users"
+          "users"
         ],
         "description": "",
         "produces": [
