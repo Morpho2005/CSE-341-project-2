@@ -1,5 +1,6 @@
 const { response } = require('express');
 const mongodb = require('../data/database');
+const validator = require('../middleware/validator.js')
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
@@ -28,7 +29,7 @@ const createUser = async (req, res) => {
         password: req.body.password,
     }
     const response = await mongodb.getDatabase().db().collection('users').insertOne(user);
-    if (response = !null) {
+    if (response != null) {
         res.status(204).send();
     } else {
         res.status(500).json(response.error || 'Some error occurred while creating the user.')
@@ -43,7 +44,7 @@ const updateUser = async (req, res) => {
         password: req.body.password,
     }
     const response = await mongodb.getDatabase().db().collection('users').replaceOne({_id: userId}, user);
-    if (response.acknowledged > 0) {
+    if (response.acknowledged != null) {
         res.status(204).send();
     } else {
         res.status(500).json(response.error || 'Some error occurred while updating the user.')
@@ -54,7 +55,7 @@ const deleteUser = async (req, res) =>{
     //#swagger.tags=['users']
     const userId = new ObjectId(req.params.id)
     const response = await mongodb.getDatabase().db().collection('users').deleteOne({_id: userId}, true);
-    if (response.deletedCount > 0) {
+    if (response.deletedCount != null) {
         res.status(204).send();
     } else {
         res.status(500).json(response.error || 'Some error occurred while deleting the user.')

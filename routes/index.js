@@ -15,4 +15,6 @@ router.get('/logout', function(req, res, next) {
 
 router.use('/users', require('./users'))
 
+router.use('/contacts', require('./contact'))
+
 module.exports = router;

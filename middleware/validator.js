@@ -1,25 +1,46 @@
-const { body, validationResult } = require('express-validator')
-const userValidationRules = () => {
-  return [
-    body('username').isEmail().withMessage('username must be an email'),
-    body('password').isLength({ min: 5 }).withMessage('password must be at least 5 chars long'),
-  ]
-}
+const validation = require('../helper/validate')
 
-const validate = (req, res, next) => {
-  const errors = validationResult(req)
-  if (errors.isEmpty()) {
-    return next()
-  }
-  const extractedErrors = []
-  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+const userValidationRules = async (req, res, next) => {
+  const validationRules = {
+    "username": "required|string|email",
+    "password": "required|string|min:5"
+  };
 
-  return res.status(422).json({
-    errors: extractedErrors,
+  await validation(req.body, validationRules, {}, (err, status) => {
+    if(!status){
+      res.status(412)
+        .send({
+          success: false,
+          message: 'validation falied',
+          data: err
+        })
+    } else {
+      next()
+    }
   })
-}
+};
+
+const contactValidationRules = async (req, res, next) => {
+  const validationRules = {
+    "name": "required|string|alpha",
+    "number": "required|integer|digits:10"
+  };
+
+  await validation(req.body, validationRules, {}, (err, status) => {
+    if(!status){
+      res.status(412)
+        .send({
+          success: false,
+          message: 'validation falied',
+          data: err
+        })
+    } else {
+      next()
+    }
+  })
+};
 
 module.exports = {
   userValidationRules,
-  validate,
+  contactValidationRules,
 }
